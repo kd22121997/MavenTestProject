@@ -1,0 +1,16 @@
+{
+  "NameOfPerson": "Krushna Dipayan Majhi",
+  "Age": 24,
+  "Married": false,
+  "TotalEducation": {
+    "Elementary": "KV",
+    "Board": "KV",
+    "HighSchool": "KV",
+    "Graduation": "BJB"
+  },
+  "JobAcrossCareer": [
+    {
+      "NameOfCompany": "Alaska"
+    }
+  ]
+}
