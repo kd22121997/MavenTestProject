@@ -12,7 +12,6 @@ import java.net.URISyntaxException;
 public class RestTestNg {
     @Test
     public void restTest_Get(){
-
         // Specify the base URL to the RESTful web service
         RestAssured.baseURI = "https://www.thunderclient.com/welcome";
         // Get the RequestSpecification of the request to be sent to the server.
