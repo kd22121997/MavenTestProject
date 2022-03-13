@@ -1,6 +1,5 @@
 package utils.reporter;
 
-import utils.base.BasePage;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -9,10 +8,13 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import utils.CommonUtils;
+import utils.Constants;
+import utils.base.BasePage;
 
 import java.util.Arrays;
 
-public class TestListeners extends BasePage implements ITestListener {
+public class TestListeners extends BasePage implements ITestListener, Constants {
 
     private static ExtentReports extent = ExtentManager.createInstance();
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();

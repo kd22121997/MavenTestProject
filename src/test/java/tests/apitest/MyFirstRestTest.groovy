@@ -1,10 +1,10 @@
-package apitest
+package tests.apitest
 
-import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.JsonPath
 import org.testng.annotations.Test
 import utils.CommonUtils
-import utils.apiutils.ContentType;
-import utils.apiutils.RestUtils;
+import utils.apiutils.ContentType
+import utils.apiutils.RestUtils
 
 public class MyFirstRestTest {
     RestUtils restUtils;

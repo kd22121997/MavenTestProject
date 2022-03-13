@@ -1,9 +1,9 @@
 package utils.reporter;
 
-import utils.Constants;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import utils.Constants;
 
 import java.io.File;
 

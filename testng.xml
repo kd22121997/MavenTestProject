@@ -6,10 +6,10 @@
     </listeners>
     <test verbose="2" name="D:/Projects/Java/MavenTestProject/src/test" parallel="classes">
         <classes>
-            <class name="uitest.tests.TestNgGroovyUITest"/>
-            <class name="uitest.tests.TestNgGroovy_2UITest"/>
-            <class name="apitest.JsonTest"/>
-            <class name="apitest.MyFirstRestTest"/>
+            <class name="tests.uitests.TestNgGroovyUITest"/>
+            <class name="tests.uitests.TestNgGroovy_2UITest"/>
+            <class name="tests.apitest.JsonTest"/>
+            <class name="tests.apitest.MyFirstRestTest"/>
         </classes>
     </test>
 </suite>

@@ -1,7 +1,7 @@
-package uitest.pages.youtube.youtubehome
+package utils.pages.youtube.youtubehome
 
-import utils.base.BasePage
 import utils.WebKeywords
+import utils.base.BasePage
 
 class YoutubeHomePage extends BasePage {
 

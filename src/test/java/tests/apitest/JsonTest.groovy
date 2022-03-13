@@ -1,15 +1,14 @@
-package apitest
+package tests.apitest
 
 import com.jayway.jsonpath.JsonPath
-import org.testng.annotations.Listeners
 import org.testng.annotations.Test
 import utils.CommonUtils
-@Listeners(utils.reporter.TestListeners.class)
+
 class JsonTest {
 
     @Test
     void jsonActions() throws IOException {
-        var jsonContext = JsonPath.parse(new File("./src/main/resources/JSONFiles/BasicJsonfile.json"))
+        var jsonContext = JsonPath.parse(new File("./src/test/resources/JSONFiles/BasicJsonfile.json"))
 
         //Set value of a particular node of a Json File using Json path
         jsonContext.set("\$.Married",true)

@@ -1,4 +1,4 @@
-package uitest.tests;
+package tests.uitests;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 

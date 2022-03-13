@@ -1,8 +1,8 @@
-package uitest.pages.google.googlesearch
+package utils.pages.google.googlesearch
 
-import utils.base.BasePage
-import utils.WebKeywords
 import org.openqa.selenium.Keys
+import utils.WebKeywords
+import utils.base.BasePage
 
 class GoogleSearchPage extends BasePage implements GoogleSearchConstants {
 

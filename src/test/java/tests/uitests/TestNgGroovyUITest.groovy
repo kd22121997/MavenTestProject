@@ -1,11 +1,11 @@
-package uitest.tests
+package tests.uitests
 
-import uitest.pages.google.googlesearch.GoogleSearchPage
-import uitest.pages.youtube.youtubehome.YoutubeHomePage
-import utils.base.UITestBase
 import org.testng.Assert
 import org.testng.annotations.BeforeClass
 import org.testng.annotations.Test
+import utils.base.UITestBase
+import utils.pages.google.googlesearch.GoogleSearchPage
+import utils.pages.youtube.youtubehome.YoutubeHomePage
 
 class TestNgGroovyUITest extends UITestBase{
 

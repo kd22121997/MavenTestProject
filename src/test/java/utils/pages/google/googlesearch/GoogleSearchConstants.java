@@ -1,4 +1,4 @@
-package uitest.pages.google.googlesearch;
+package utils.pages.google.googlesearch;
 
 import org.openqa.selenium.By;
 
