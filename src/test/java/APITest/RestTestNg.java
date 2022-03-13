@@ -6,9 +6,6 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 
-import java.io.*;
-import java.net.URISyntaxException;
-
 public class RestTestNg {
     @Test
     public void restTest_Get(){

@@ -1,15 +1,9 @@
 package JSON;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.internal.filter.ValueNodes;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.List;
 
 public class JSONPathChecking {
 

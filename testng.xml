@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="D:/Projects/Java/MavenTestProject/src/test">
-        <classes><class name="APITest.RestTestNg">
-            <methods><include name="restTest_Get"/>
-            </methods>
-        </class>
+    <listeners>
+        <listener class-name="utils.reporter.TestListeners"/>
+    </listeners>
+    <test verbose="2" name="D:/Projects/Java/MavenTestProject/src/test" parallel="classes">
+        <classes>
+            <class name="uitest.tests.TestNgGroovyUITest"/>
+            <class name="uitest.tests.TestNgGroovy_2UITest"/>
         </classes>
     </test>
 </suite>

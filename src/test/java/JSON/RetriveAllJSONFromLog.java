@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class RetriveAllJSONFromLog {
 
@@ -44,7 +42,8 @@ public class RetriveAllJSONFromLog {
                 "Read text file using BufferedReader");
         while ((line = br.readLine()) != null) {
             // process the line
-            sb.append(line+"\n");
+            sb.append(line);
+            sb.append("\n");
         }
         // close resources
         br.close();
