@@ -1,6 +1,7 @@
 {
   "NameOfPerson": "Krushna Dipayan Majhi",
   "Age": 24,
+  "Gender": "Male",
   "Married": false,
   "TotalEducation": {
     "Elementary": "KV",
@@ -10,7 +11,34 @@
   },
   "JobAcrossCareer": [
     {
-      "NameOfCompany": "Alaska"
+      "NameOfCompany": "Swift",
+      "Location": "Alaska"
+    },
+    {
+      "NameOfCompany": "Google",
+      "Location": "Hyderabad"
     }
-  ]
+  ],
+  "Skills": {
+    "Reading": {
+      "Foundation": {
+        "Status": "Good",
+        "Score": 80
+      },
+      "Professional": {
+        "Status": "Moderate",
+        "Score": 60
+      }
+    },
+    "Writing": {
+      "Foundation": {
+        "Status": "Good",
+        "Score": 75
+      },
+      "Professional": {
+        "Status": "Bad",
+        "Score": 40
+      }
+    }
+  }
 }

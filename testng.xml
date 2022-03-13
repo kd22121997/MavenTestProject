@@ -8,6 +8,8 @@
         <classes>
             <class name="uitest.tests.TestNgGroovyUITest"/>
             <class name="uitest.tests.TestNgGroovy_2UITest"/>
+            <class name="apitest.JsonTest"/>
+            <class name="apitest.MyFirstRestTest"/>
         </classes>
     </test>
 </suite>
