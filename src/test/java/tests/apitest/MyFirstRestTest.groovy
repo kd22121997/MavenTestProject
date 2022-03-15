@@ -10,7 +10,7 @@ public class MyFirstRestTest {
     RestUtils restUtils;
 
     @Test
-     void restTest_Get(){
+    void restTest_Get() {
         restUtils = new RestUtils();
         var response = restUtils.runGETRequest("https://www.thunderclient.com/welcome")
         // Print the status and message body of the response received from the server
@@ -20,25 +20,16 @@ public class MyFirstRestTest {
     }
 
     @Test
-     void restTest_Post(){
-        String uri = "http://restapi.demoqa.com/customer"
-        String action = "register"
+    void restTest_Post() {
+        String uri = "http://ip.jsontest.com/"
+        def bodyContext = JsonPath.parse(new File("D:\\Projects\\Java\\MavenTestProject\\src\\test\\resources\\JSONFiles\\postrequest.json"))
+        String bodyJson = CommonUtils.prettyPrintJson(bodyContext.json())
         restUtils = new RestUtils();
-        HashMap<String,String> body= ["FirstName":"JohnXYZ",
-                                      "LastName":"XYZ",
-                                      "UserName":"John.XYZ",
-                                      "Password":"JohnXYZ",
-                                      "Email":"JohnXYZ@opt.com"]
-        var response = restUtils.runPOSTRequest(uri, action, ContentType.Json, CommonUtils.prettyPrintJson(body))
+        var response = restUtils.runPOSTRequest(uri, ContentType.Json,bodyJson)
         System.out.println("Status Line => " + response.getStatusLine())
         var responseBody = JsonPath.parse(response.getBody().print())
-        System.out.println("Response=>" + responseBody.read("\$.SuccessCode"))
+        System.out.println("IP address received from Response=>" + responseBody.read("\$.ip"))
         System.out.println("Status=>" + response.getStatusCode())
 
     }
-//    @Test
-//    public void googleMapAPITest(){
-//        restUtils = new RestUtils();
-//        var response = restUtils.runGETRequest("https://maps.googleapis.com")
-//    }
 }

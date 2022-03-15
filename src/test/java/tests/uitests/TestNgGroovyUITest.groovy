@@ -7,30 +7,31 @@ import utils.base.UITestBase
 import utils.pages.google.googlesearch.GoogleSearchPage
 import utils.pages.youtube.youtubehome.YoutubeHomePage
 
-class TestNgGroovyUITest extends UITestBase{
+class TestNgGroovyUITest extends UITestBase {
 
     GoogleSearchPage googleSearchPage
     YoutubeHomePage youtubeHomePage
 
     @BeforeClass
-    void start(){
+    void start() {
         googleSearchPage = new GoogleSearchPage(driverHelper)
         youtubeHomePage = new YoutubeHomePage(driverHelper)
     }
 
     @Test(priority = 0)
-    void NavigateGoogle(){
+    void NavigateGoogle() {
         googleSearchPage.navigate()
-        Assert.assertEquals(driverHelper.getTitle(),"Google","Checking Title")
+        Assert.assertEquals(driverHelper.getTitle(), "Google", "Checking Title")
     }
+
     @Test(priority = 1)
-    void SearchSomething(){
+    void SearchSomething() {
         googleSearchPage.search("Iron Man")
         driverHelper.takeSnapShot()
     }
 
     @Test(priority = 2)
-    void OpenYoutubeInANewTab(){
+    void OpenYoutubeInANewTab() {
         driverHelper.openNewWindow()
         driverHelper.switchToWindowByIndex(1)
         youtubeHomePage.navigate()

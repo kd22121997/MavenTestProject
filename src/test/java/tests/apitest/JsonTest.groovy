@@ -11,11 +11,11 @@ class JsonTest {
         var jsonContext = JsonPath.parse(new File("./src/test/resources/JSONFiles/BasicJsonfile.json"))
 
         //Set value of a particular node of a Json File using Json path
-        jsonContext.set("\$.Married",true)
+        jsonContext.set("\$.Married", true)
 
         //Add new record to the List of the Node
-        jsonContext.add("\$.JobAcrossCareer", ["NameOfCompany":"Oracle","Location":"Hyderabad"])
-        jsonContext.add("\$.JobAcrossCareer", ["NameOfCompany":"Microsoft","Location":"Bangalore"])
+        jsonContext.add("\$.JobAcrossCareer", ["NameOfCompany": "Oracle", "Location": "Hyderabad"])
+        jsonContext.add("\$.JobAcrossCareer", ["NameOfCompany": "Microsoft", "Location": "Bangalore"])
 
         System.out.println("JSON After adding new values to JobsAcrossCareer: \n" + CommonUtils.prettyPrintJson(jsonContext.json()))
 
