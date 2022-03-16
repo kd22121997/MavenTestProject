@@ -11,4 +11,6 @@ public interface Constants {
     int PAGELOAD_TIMEOUT = 60;
     int CHECK_ELEMENT_TIMEOUT = 0;
     String SETTINGS_PROPERTIES_PATH = CommonUtils.getProjectPath() + "/src/test/resources/config/settings.properties";
+    String JSONFOLDERPATH =  CommonUtils.getProjectPath() + "/src/test/resources/jsonfiles";
+    String TESTDATAPATH = CommonUtils.getProjectPath() + "/src/test/resources/testdata";
 }

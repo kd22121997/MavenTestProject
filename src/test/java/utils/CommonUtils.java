@@ -2,36 +2,38 @@ package utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
+import java.util.*;
 
 public class CommonUtils {
 
-    public static String getProjectPath(){
+    public static String getProjectPath() {
         return System.getProperty("user.dir");
     }
-    public static String dateToString(Date date,String format){
+
+    public static String dateToString(Date date, String format) {
         DateFormat df = new SimpleDateFormat(format);
         return df.format(date);
     }
 
-    public static Date currentDate(){
+    public static Date currentDate() {
         return new Date();
     }
 
     public static String prettyPrintJson(Object json) throws JsonProcessingException {
-        return  new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(json);
+        return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(json);
     }
 
     public static Properties readProperties(String path) throws IOException {
-        FileReader reader=new FileReader(path);
-        Properties p=new Properties();
+        FileReader reader = new FileReader(path);
+        Properties p = new Properties();
         p.load(reader);
         return p;
     }

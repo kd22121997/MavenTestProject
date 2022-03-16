@@ -3,6 +3,7 @@ package tests.apitest
 import com.jayway.jsonpath.JsonPath
 import org.testng.annotations.Test
 import utils.CommonUtils
+import utils.Constants
 import utils.apiutils.ContentType
 import utils.apiutils.RestUtils
 
@@ -22,7 +23,7 @@ public class MyFirstRestTest {
     @Test
     void restTest_Post() {
         String uri = "http://ip.jsontest.com/"
-        def bodyContext = JsonPath.parse(new File("D:\\Projects\\Java\\MavenTestProject\\src\\test\\resources\\JSONFiles\\postrequest.json"))
+        def bodyContext = JsonPath.parse(new File(Constants.JSONFOLDERPATH +"/postrequest.json"))
         String bodyJson = CommonUtils.prettyPrintJson(bodyContext.json())
         restUtils = new RestUtils();
         var response = restUtils.runPOSTRequest(uri, ContentType.Json,bodyJson)

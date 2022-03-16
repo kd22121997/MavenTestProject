@@ -10,6 +10,8 @@
             <class name="tests.uitests.TestNgGroovy_2UITest"/>
             <class name="tests.apitest.JsonTest"/>
             <class name="tests.apitest.MyFirstRestTest"/>
+            <class name="tests.apitest.XmlXpathTest"/>
+            <class name="tests.apitest.ExcelTest"/>
         </classes>
     </test>
 </suite>

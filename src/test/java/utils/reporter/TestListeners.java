@@ -8,7 +8,6 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import utils.CommonUtils;
 import utils.Constants;
 import utils.base.BasePage;
 
@@ -28,13 +27,13 @@ public class TestListeners extends BasePage implements ITestListener, Constants 
     public void onTestSuccess(ITestResult result) {
         String logTest = "<b>Test Method " + result.getMethod().getMethodName() + " passed </b>";
         var m = MarkupHelper.createLabel(logTest, ExtentColor.GREEN);
-        extentTest.get().log(Status.PASS,m);
+        extentTest.get().log(Status.PASS, m);
     }
 
     public void onTestFailure(ITestResult result) {
         String exception = Arrays.toString(result.getThrowable().getStackTrace());
         extentTest.get().fail("<details><summary><font color=red>Exception Occured, click to see the details:</font></summary>" +
-                exception.replaceAll(",","<br>") + "</details>\n");
+                exception.replaceAll(",", "<br>") + "</details>\n");
 /*        try{
             String screenshotpath = result.getAttribute("fail_screenshot").toString();
             System.out.println(screenshotpath);
@@ -46,13 +45,13 @@ public class TestListeners extends BasePage implements ITestListener, Constants 
         }*/
         String logTest = "<b>Test Method " + result.getMethod().getMethodName() + " Failed </b>";
         var m = MarkupHelper.createLabel(logTest, ExtentColor.RED);
-        extentTest.get().log(Status.FAIL,m);
+        extentTest.get().log(Status.FAIL, m);
     }
 
     public void onTestSkipped(ITestResult result) {
         String logTest = "<b>Test Method " + result.getMethod().getMethodName() + " Skipped </b>";
         var m = MarkupHelper.createLabel(logTest, ExtentColor.YELLOW);
-        extentTest.get().log(Status.SKIP,m);
+        extentTest.get().log(Status.SKIP, m);
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
@@ -66,9 +65,24 @@ public class TestListeners extends BasePage implements ITestListener, Constants 
     }
 
     public void onFinish(ITestContext context) {
-        if(extent!=null){
+        if (extent != null) {
             extent.flush();
         }
     }
 
+/*    public static synchronized List<String> getOutput(ITestResult tr) {
+        List<String> result = Lists.newArrayList();
+        if (tr == null) {
+            //guard against a possible NPE in scenarios wherein the test result object itself could be a null value.
+            return result;
+        }
+        List<Integer> lines = m_methodOutputMap.get(tr.hashCode());
+        if (lines != null) {
+            for (Integer n : lines) {
+                result.add(getOutput().get(n));
+            }
+        }
+
+        return result;
+    }*/
 }
