@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class XmlContext {
@@ -33,6 +34,7 @@ public class XmlContext {
         doc = builder.parse(filepath);
         XPathFactory xpathfactory = XPathFactory.newInstance();
         xpath = xpathfactory.newXPath();
+        xpath.setNamespaceContext(new NamespaceResolver(doc));
     }
 
     public NodeList getNodesFromXpath(String xpath) throws XPathExpressionException {
@@ -107,6 +109,8 @@ public class XmlContext {
     public void removeAttribute(String xpath, String attributeName) throws XPathExpressionException {
         getNodeFromXpath(xpath).getAttributes().removeNamedItem(attributeName);
     }
+
+
 
     public String toXmlString() throws TransformerException {
         StringWriter stringWriter = new StringWriter();

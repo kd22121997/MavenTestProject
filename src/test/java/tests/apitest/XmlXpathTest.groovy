@@ -7,7 +7,7 @@ import utils.xmlutils.XmlContext
 class XmlXpathTest {
 
     @Test
-    public void testingXPath(){
+     void testingXPath(){
         XmlContext xmlContext = new XmlContext(Constants.TESTDATAPATH + "/inventory.xml")
         var r1 = xmlContext.getNodesFromXpath("//book[@year>2001]/title")
         println("NodeList: " + r1);
@@ -29,5 +29,12 @@ class XmlXpathTest {
         String r8 = xmlContext.getAttributeFromXpath("//book[@year=1996]","version")
         println("get attribute value using function: " + r8)
 
+    }
+
+    @Test
+    void testXPathHavingNamesSpaces(){
+        XmlContext xmlContext = new XmlContext(Constants.TESTDATAPATH + "/contacts.xml")
+        var r1 = xmlContext.getNodeFromXpath("//cont:phone").getTextContent();
+        println(r1);
     }
 }
