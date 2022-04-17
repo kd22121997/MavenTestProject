@@ -1,9 +1,9 @@
 package utils.base
 
 
-import utils.WebKeywords
+import utils.WrapperObject
 
 class BasePage {
-    public WebKeywords driverHelper
+    public WrapperObject aut
 
 }

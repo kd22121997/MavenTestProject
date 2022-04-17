@@ -34,15 +34,6 @@ public class TestListeners extends BasePage implements ITestListener, Constants 
         String exception = Arrays.toString(result.getThrowable().getStackTrace());
         extentTest.get().fail("<details><summary><font color=red>Exception Occured, click to see the details:</font></summary>" +
                 exception.replaceAll(",", "<br>") + "</details>\n");
-/*        try{
-            String screenshotpath = result.getAttribute("fail_screenshot").toString();
-            System.out.println(screenshotpath);
-            extentTest.get().fail("<b><font color=red>" + "Screenshot of Failure" + "</font></b>",
-                    MediaEntityBuilder.createScreenCaptureFromPath(screenshotpath).build());
-        }
-        catch (Exception ex){
-            extentTest.get().fail("Test Failed, Cannot attach Screenshot");
-        }*/
         String logTest = "<b>Test Method " + result.getMethod().getMethodName() + " Failed </b>";
         var m = MarkupHelper.createLabel(logTest, ExtentColor.RED);
         extentTest.get().log(Status.FAIL, m);
@@ -69,20 +60,4 @@ public class TestListeners extends BasePage implements ITestListener, Constants 
             extent.flush();
         }
     }
-
-/*    public static synchronized List<String> getOutput(ITestResult tr) {
-        List<String> result = Lists.newArrayList();
-        if (tr == null) {
-            //guard against a possible NPE in scenarios wherein the test result object itself could be a null value.
-            return result;
-        }
-        List<Integer> lines = m_methodOutputMap.get(tr.hashCode());
-        if (lines != null) {
-            for (Integer n : lines) {
-                result.add(getOutput().get(n));
-            }
-        }
-
-        return result;
-    }*/
 }

@@ -14,28 +14,28 @@ class TestNgGroovy_2UITest extends UITestBase {
 
     @BeforeClass
     void start() {
-        googleSearchPage = new GoogleSearchPage(driverHelper)
-        youtubeHomePage = new YoutubeHomePage(driverHelper)
+        googleSearchPage = new GoogleSearchPage(aut)
+        youtubeHomePage = new YoutubeHomePage(aut)
     }
 
     @Test(priority = 0)
     void NavigateGoogle() {
         googleSearchPage.navigate()
-        Assert.assertEquals(driverHelper.getDriver().getTitle(), "Google", "Checking Title")
+        Assert.assertEquals(aut.getDriver().getTitle(), "Google", "Checking Title")
     }
 
     @Test(priority = 1)
     void SearchSomething() {
         googleSearchPage.search("Iron Man")
-        driverHelper.takeSnapShot()
+        aut.takeSnapShot()
     }
 
     @Test(priority = 2)
     void OpenYoutubeInANewTab() {
-        driverHelper.openNewWindow()
-        driverHelper.switchToWindowByIndex(1)
+        aut.openNewWindow()
+        aut.switchToWindowByIndex(1)
         youtubeHomePage.navigate()
-        println(driverHelper.getDriver().getTitle())
+        println(aut.getDriver().getTitle())
     }
 
 }

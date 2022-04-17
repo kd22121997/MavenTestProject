@@ -1,14 +1,14 @@
 package utils.pages.youtube.youtubehome
 
-import utils.WebKeywords
+import utils.WrapperObject
 import utils.base.BasePage
 
 class YoutubeHomePage extends BasePage {
 
-    YoutubeHomePage(WebKeywords driverHelper) {
-        this.driverHelper = driverHelper
+    YoutubeHomePage(WrapperObject driverHelper) {
+        this.aut = driverHelper
     }
     void navigate(){
-        driverHelper.navigateToUrl("https://www.youtube.com")
+        aut.navigateToUrl("https://www.youtube.com")
     }
 }

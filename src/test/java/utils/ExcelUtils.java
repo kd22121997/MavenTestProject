@@ -4,6 +4,8 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ExcelUtils {
+    Logger log = LoggerFactory.getLogger(this.getClass().getName());
     public List<HashMap<String, String>> readExcel(String path, String sheetName) throws IOException {
         var fis = new FileInputStream(new File(path));
         XSSFWorkbook wb = new XSSFWorkbook(fis);

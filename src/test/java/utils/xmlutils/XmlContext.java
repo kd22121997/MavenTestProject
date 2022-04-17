@@ -1,5 +1,7 @@
 package utils.xmlutils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -24,6 +26,8 @@ import java.util.List;
 
 public class XmlContext {
 
+    Logger log = LoggerFactory.getLogger(this.getClass().getName());
+
     public Document doc;
     public XPath xpath;
 
@@ -35,16 +39,20 @@ public class XmlContext {
         XPathFactory xpathfactory = XPathFactory.newInstance();
         xpath = xpathfactory.newXPath();
         xpath.setNamespaceContext(new NamespaceResolver(doc));
+        log.info("Parsed XML from file path: '"+ filepath + "'");
     }
 
     public NodeList getNodesFromXpath(String xpath) throws XPathExpressionException {
+        log.info("Getting Nodes from XML Xpath: '" + xpath + "'");
         XPathExpression expr = this.xpath.compile(xpath);
         Object result = expr.evaluate(doc, XPathConstants.NODESET);
         return (NodeList) result;
     }
 
     public Node getNodeFromXpath(String xpath) throws XPathExpressionException {
-        return getNodesFromXpath(xpath).item(0);
+        Node node = getNodesFromXpath(xpath).item(0);
+        log.info("Getting node from xpath: '" + xpath + "' : " + node);
+        return  node;
     }
 
     public String getCommentFromXpath(String xpath) throws XPathExpressionException {
@@ -59,12 +67,15 @@ public class XmlContext {
         for(int i = 0; i < result.getLength();i++){
             map.put(result.item(i).getLocalName(),result.item(i).getNodeValue());
         }
+        log.info("All attributes from Xpath: '" + xpath + "' are: "+ map);
         return map;
     }
 
     public String getTextFromXpath(String xpath) throws XPathExpressionException {
         var resultsNode = getNodeFromXpath(xpath);
-        return resultsNode.getTextContent();
+        String text = resultsNode.getTextContent();
+        log.info("Text retrieved from xpath: '" + xpath + "' is : " + text);
+        return text;
     }
 
 
@@ -98,16 +109,21 @@ public class XmlContext {
     public void setValueByXpath(String xpath, String value) throws XPathExpressionException {
         var node = getNodeFromXpath(xpath);
         node.setNodeValue(value);
+        log.info("Text updated in Xpath: '" + xpath + "' is: " +value);
     }
 
     public String getAttributeFromXpath(String xpath,String attributeName) throws XPathExpressionException {
-        return getNodeFromXpath(xpath).getAttributes().getNamedItem(attributeName).getNodeValue();
+        String value = getNodeFromXpath(xpath).getAttributes().getNamedItem(attributeName).getNodeValue();
+       log.info("Value of the Attribute: '" + attributeName + "' retrieved from xpath : '" + xpath + "' is: " + value);
+        return value;
     }
     public void setAttributeByXpath(String xpath,String attributeName, String attributeValue) throws XPathExpressionException {
         getNodeFromXpath(xpath).getAttributes().getNamedItem(attributeName).setNodeValue(attributeValue);
+        log.info("Value of the Attribute: '" + attributeName + "'  present in xpath : '" + xpath + "' is updated to value: " + attributeValue);
     }
     public void removeAttribute(String xpath, String attributeName) throws XPathExpressionException {
         getNodeFromXpath(xpath).getAttributes().removeNamedItem(attributeName);
+        log.info("Attribute: '" + attributeName + "'  present in xpath : '" + xpath + "' is removed");
     }
 
 
