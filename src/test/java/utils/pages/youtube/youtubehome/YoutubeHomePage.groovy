@@ -1,11 +1,11 @@
 package utils.pages.youtube.youtubehome
 
-import utils.WrapperObject
+import utils.ApplicationUnderTest
 import utils.base.BasePage
 
 class YoutubeHomePage extends BasePage {
 
-    YoutubeHomePage(WrapperObject driverHelper) {
+    YoutubeHomePage(ApplicationUnderTest driverHelper) {
         this.aut = driverHelper
     }
     void navigate(){

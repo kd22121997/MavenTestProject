@@ -4,12 +4,14 @@ import com.jayway.jsonpath.JsonPath
 import org.testng.annotations.Test
 import utils.CommonUtils
 import utils.Constants
+import utils.apiutils.JsonContext
+import utils.base.UITestBase
 
-class JsonTest {
+class JsonTest extends UITestBase{
 
     @Test
     void jsonActions() throws IOException {
-        var jsonContext = JsonPath.parse(new File(Constants.JSONFOLDERPATH + "/BasicJsonfile.json"))
+        var jsonContext = new JsonContext(aut,new File(Constants.JSONFOLDERPATH + "/BasicJsonfile.json"))
 
         //Set value of a particular node of a Json File using Json path
         jsonContext.set("\$.Married", true)
@@ -30,7 +32,7 @@ class JsonTest {
 
         //Complex Scenarios #1: Get the company Names located in Hyderabad
         var FirmNames = jsonContext.read("\$.JobAcrossCareer[?(@.Location=='Hyderabad')].NameOfCompany")
-        System.out.println("Firms having location as Hyderabad: " + FirmNames);
+        System.out.println("Firms having location as Hyderabad: " + FirmNames)
 
         //Complex Scenarios #2: retrieving from nested json node using relative Json Path
         var Skills = jsonContext.read("\$.Skills..[?(@.Status == 'Bad')]")

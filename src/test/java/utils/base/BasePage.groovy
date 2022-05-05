@@ -1,9 +1,10 @@
 package utils.base
 
-
-import utils.WrapperObject
+import com.aventstack.extentreports.ExtentReports
+import utils.ApplicationUnderTest
 
 class BasePage {
-    public WrapperObject aut
-
+    public ApplicationUnderTest aut
+    public static ExtentReports extentReports
+    WebAssert webAssert
 }

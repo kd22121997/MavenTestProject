@@ -1,12 +1,12 @@
 package utils.pages.google.googlesearch
 
 import org.openqa.selenium.Keys
-import utils.WrapperObject
+import utils.ApplicationUnderTest
 import utils.base.BasePage
 
 class GoogleSearchPage extends BasePage implements GoogleSearchConstants {
 
-    GoogleSearchPage(WrapperObject driverHelper) {
+    GoogleSearchPage(ApplicationUnderTest driverHelper) {
         this.aut = driverHelper
     }
 
@@ -15,8 +15,9 @@ class GoogleSearchPage extends BasePage implements GoogleSearchConstants {
     }
 
     void search(String text){
-        aut.waitElementVisible([SEARCH_INPUT, GOOGLE_SEARCH_BUTTON, I_M_FEELING_LUCKY_BUTTON])
-        aut.enterText(SEARCH_INPUT,text)
-        aut.pressKeyOnElement(SEARCH_INPUT, Keys.ENTER)
+        def searchElement = aut.driver.findElement(SEARCH_INPUT)
+        searchElement.entertext(text)
+        searchElement.pressKeyOnElement(Keys.ENTER)
+        aut.logger.logInfo("Searched the element : "+ text)
     }
 }

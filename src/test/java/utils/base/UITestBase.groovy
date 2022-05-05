@@ -1,29 +1,40 @@
 package utils.base
 
 
-import org.openqa.selenium.chrome.ChromeDriver
-import org.testng.annotations.AfterClass
-import org.testng.annotations.BeforeClass
-import utils.Constants
-import utils.WrapperObject
+import org.testng.annotations.AfterMethod
+import org.testng.annotations.AfterSuite
+import org.testng.annotations.BeforeMethod
+import org.testng.annotations.BeforeSuite
+import utils.ApplicationUnderTest
+import utils.reporter.ExtentManager
+import utils.reporter.ReportLogger
 
-class UITestBase extends BasePage{
+import java.lang.reflect.Method
 
-    void openChrome(){
-        System.setProperty("webdriver.chrome.driver","D:\\SeleniumDrivers\\chromedriver.exe")
-        aut = new WrapperObject(new ChromeDriver())
+class UITestBase extends BasePage {
+
+    @BeforeSuite
+    void initialize() {
+        extentReports = ExtentManager.createInstance()
+        ReportLogger.setExtentReport(extentReports)
     }
 
-
-    @BeforeClass
-    void setup(){
-        openChrome()
-        aut.setImplicitWait(Constants.DRIVER_TIMEOUT)
-        aut.maximizedWindow()
+    @BeforeMethod
+    void startTest(Method testMethod) {
+        aut = new ApplicationUnderTest(testMethod)
+        webAssert = new WebAssert(aut)
     }
 
-    @AfterClass
-    void cleanup(){
-        aut.quit()
+    @AfterMethod
+    void closeDriver() {
+        aut.closeExecution()
     }
+
+    @AfterSuite
+    void procescleanup() {
+        if (extentReports != null) {
+            extentReports.flush()
+        }
+    }
+
 }

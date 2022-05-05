@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <listeners>
-        <listener class-name="utils.reporter.TestListeners"/>
-    </listeners>
-    <test verbose="2" name="D:/Projects/Java/MavenTestProject/src/test" parallel="classes">
+    <test verbose="2" name="D:/Projects/Java/MavenTestProject/src/test" parallel="methods">
         <classes>
-            <class name="tests.uitests.TestNgGroovyUITest"/>
-            <class name="tests.uitests.TestNgGroovy_2UITest"/>
+            <class name="tests.uitests.NewTest"/>
+            <class name="tests.uitests.NewTest_2"/>
             <class name="tests.apitest.JsonTest"/>
             <class name="tests.apitest.MyFirstRestTest"/>
             <class name="tests.apitest.XmlXpathTest"/>
-            <class name="tests.apitest.ExcelTest"/>
         </classes>
     </test>
 </suite>

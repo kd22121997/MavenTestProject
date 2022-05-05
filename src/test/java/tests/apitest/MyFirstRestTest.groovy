@@ -6,13 +6,14 @@ import utils.CommonUtils
 import utils.Constants
 import utils.apiutils.ContentType
 import utils.apiutils.RestUtils
+import utils.base.UITestBase
 
-public class MyFirstRestTest {
-    RestUtils restUtils;
+class MyFirstRestTest extends  UITestBase {
+    RestUtils restUtils
 
     @Test
     void restTest_Get() {
-        restUtils = new RestUtils();
+        restUtils = new RestUtils(aut)
         var response = restUtils.runGETRequest("https://www.thunderclient.com/welcome")
         // Print the status and message body of the response received from the server
         System.out.println("Status Line => " + response.getStatusLine())
@@ -25,7 +26,7 @@ public class MyFirstRestTest {
         String uri = "http://ip.jsontest.com/"
         def bodyContext = JsonPath.parse(new File(Constants.JSONFOLDERPATH +"/postrequest.json"))
         String bodyJson = CommonUtils.prettyPrintJson(bodyContext.json())
-        restUtils = new RestUtils();
+        restUtils = new RestUtils(aut)
         var response = restUtils.runPOSTRequest(uri, ContentType.Json,bodyJson)
         System.out.println("Status Line => " + response.getStatusLine())
         var responseBody = JsonPath.parse(response.getBody().print())
