@@ -79,4 +79,16 @@ class ReportLogger {
         byte[] fileContent = FileUtils.readFileToByteArray(new File(filepath))
        return Base64.getEncoder().encodeToString(fileContent)
     }
+
+    void logInfoJson(String json){
+        extentTest.log(Status.INFO,MarkupHelper.createCodeBlock(json, CodeLanguage.JSON))
+    }
+
+    void logInfoXML(String xml){
+        extentTest.log(Status.INFO,MarkupHelper.createCodeBlock(xml, CodeLanguage.XML))
+    }
+
+    void logInfoTable(List<List<String>> tableData){
+        extentTest.log(Status.INFO,MarkupHelper.toTable(tableData))
+    }
 }

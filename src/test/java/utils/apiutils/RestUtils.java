@@ -4,7 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import utils.ApplicationUnderTest;
+import utils.generics.ApplicationUnderTest;
 
 public class RestUtils {
 
@@ -44,7 +44,7 @@ public class RestUtils {
     }
 
     String modifyAction(String action) {
-        return !action.equals("") || action == null ? "" : action.startsWith("/") ? action : "/" + action;
+        return action.equals("") || action == null ? "" : action.startsWith("/") ? action : "/" + action;
     }
 
 }

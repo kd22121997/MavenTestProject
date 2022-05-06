@@ -1,6 +1,6 @@
 package utils.pages.youtube.youtubehome
 
-import utils.ApplicationUnderTest
+import utils.generics.ApplicationUnderTest
 import utils.base.BasePage
 
 class YoutubeHomePage extends BasePage {

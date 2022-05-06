@@ -4,6 +4,7 @@ package tests.uitests
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 import utils.base.UITestBase
+import utils.generics.Locator
 import utils.pages.google.googlesearch.GoogleSearchPage
 
 class NewTest extends UITestBase{

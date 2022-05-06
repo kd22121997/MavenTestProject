@@ -11,7 +11,7 @@ class JsonTest extends UITestBase{
 
     @Test
     void jsonActions() throws IOException {
-        var jsonContext = new JsonContext(aut,new File(Constants.JSONFOLDERPATH + "/BasicJsonfile.json"))
+        var jsonContext = new JsonContext(aut,new File(Constants.JSONFOLDERPATH + "/BasicJsonfile.jsonp"))
 
         //Set value of a particular node of a Json File using Json path
         jsonContext.set("\$.Married", true)
@@ -21,6 +21,7 @@ class JsonTest extends UITestBase{
         jsonContext.add("\$.JobAcrossCareer", ["NameOfCompany": "Microsoft", "Location": "Bangalore"])
 
         System.out.println("JSON After adding new values to JobsAcrossCareer: \n" + CommonUtils.prettyPrintJson(jsonContext.json()))
+        aut.logger.logInfoJson(CommonUtils.prettyPrintJson(jsonContext.json()))
 
         //Read value of a particular node using Json path
         String highSchool = jsonContext.read("\$.TotalEducation.HighSchool")

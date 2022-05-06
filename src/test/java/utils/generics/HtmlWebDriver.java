@@ -1,10 +1,12 @@
-package utils;
+package utils.generics;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.generics.HtmlElement;
 import utils.reporter.ReportLogger;
+
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,15 +65,17 @@ public class HtmlWebDriver {
         logger.logInfo("window is closed");
     }
 
-    public HtmlElement findElement(By by) {
+    public HtmlElement findElement(Locator by) {
         return new HtmlElement(webDriver, by, logger);
     }
 
-    public List<HtmlElement> findElements(By by){
+    public List<HtmlElement> findElements(Locator by) {
         List<HtmlElement> elements = new ArrayList<>();
-        var _elements = webDriver.findElements(by);
-        for(var ele : _elements){
-            elements.add(new HtmlElement(ele,by,logger));
+        var _elements = webDriver.findElements(by.getBy());
+        int i = 1;
+        for (var ele : _elements) {
+            elements.add(new HtmlElement(ele, by, logger, by.getXPath()));
+            i++;
         }
         return elements;
     }
@@ -82,7 +86,7 @@ public class HtmlWebDriver {
         return isPresent;
     }
 
-    public Set<String> getWindowHandles(){
+    public Set<String> getWindowHandles() {
         return webDriver.getWindowHandles();
     }
 }

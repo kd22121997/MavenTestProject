@@ -1,6 +1,5 @@
-package utils
+package utils.generics
 
-import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.Keys
 import org.openqa.selenium.WebDriver
@@ -11,21 +10,22 @@ import utils.reporter.ReportLogger
 class HtmlElement {
     private WebElement element
     private Select dropdown
-    private By locator
+    private Locator locator
     private ReportLogger logger
     private JavascriptExecutor js
 
-    HtmlElement(WebDriver driver, By by, ReportLogger logger) {
-        element = driver.findElement(by)
+    HtmlElement(WebDriver driver, Locator by, ReportLogger logger) {
+        element = driver.findElement(by.getBy())
         locator = by
         this.logger = logger
         js = (JavascriptExecutor)driver
     }
 
-     HtmlElement(WebElement element, By by, ReportLogger  logger){
+     HtmlElement(WebElement element, Locator by, ReportLogger  logger, String xpath = null){
         this.element = element
         locator = by
          this.logger = logger
+         locator.setXpath(xpath)
     }
 
 
@@ -45,14 +45,14 @@ class HtmlElement {
         logger.logInfo("Entered Text on element '" + locator + "' is: '" + text + "'")
     }
 
-    HtmlElement findElement(By by){
+    HtmlElement findElement(Locator by){
         logger.logInfo("Locating element '$by' within parent '$locator'")
-        return  new HtmlElement(element.findElement(by),by, logger)
+        return  new HtmlElement(element.findElement(by.getBy()),by, logger)
     }
 
-    List<HtmlElement> findElements(By by){
+    List<HtmlElement> findElements(Locator by){
         def elements = []
-        def _elements = element.findElements(by)
+        def _elements = element.findElements(by.getBy())
         logger.logInfo("Locating elements '$by' within parent '$locator'")
         for(def ele : _elements){
             elements.add(new HtmlElement(ele,by, logger))
@@ -71,7 +71,7 @@ class HtmlElement {
         logger.logInfo("Value selected in dropdown " + locator + " is :" + value)
     }
 
-    void selectDropdownByIndex(By locator, int index) {
+    void selectDropdownByIndex(Locator locator, int index) {
         dropdown = new Select(findElement(locator).element)
         dropdown.selectByIndex(index)
         logger.logInfo("Index selected in dropdown " + locator + " is :" + index)

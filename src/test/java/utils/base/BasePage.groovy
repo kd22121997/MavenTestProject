@@ -1,7 +1,7 @@
 package utils.base
 
 import com.aventstack.extentreports.ExtentReports
-import utils.ApplicationUnderTest
+import utils.generics.ApplicationUnderTest
 
 class BasePage {
     public ApplicationUnderTest aut

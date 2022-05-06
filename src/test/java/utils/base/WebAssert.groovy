@@ -1,10 +1,8 @@
 package utils.base
 
-import org.apache.poi.ss.formula.functions.T
+
 import org.testng.Reporter
-import org.testng.asserts.SoftAssert
-import org.testng.internal.TestResult
-import utils.ApplicationUnderTest
+import utils.generics.ApplicationUnderTest
 
 class WebAssert {
 

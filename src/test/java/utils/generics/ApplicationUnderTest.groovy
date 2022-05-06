@@ -1,10 +1,12 @@
-package utils
+package utils.generics
 
 
 import lombok.NonNull
 import org.apache.commons.io.FileUtils
 import org.openqa.selenium.*
 import org.openqa.selenium.support.ui.WebDriverWait
+import org.testng.ITestResult
+import utils.Constants
 import utils.reporter.ReportLogger
 
 import java.lang.reflect.Method
@@ -30,7 +32,7 @@ class ApplicationUnderTest implements Constants {
     HtmlElement getElementByModifyingXpath(String Xpath, List<String> dynamicValues) {
         String modifiedXpath = String.format(Xpath, dynamicValues.toArray())
         logger.logInfo("Xpath : '" + Xpath + "' with dynamic values : '" + dynamicValues + "' is modified to : " + modifiedXpath)
-        return driver.findElement(By.xpath(modifiedXpath))
+        return driver.findElement(Locator.xpath(modifiedXpath))
     }
 
     Object executeScript(String script, Object[] arguments = []) {
@@ -79,10 +81,19 @@ class ApplicationUnderTest implements Constants {
     }
 
     String takeSnapShot() throws Exception {
-        return takeSnapShot("")
+        return takeSnapShot(logger.className + "\\" + logger.testName)
     }
 
-    void closeExecution() {
+    void closeExecution(ITestResult testResult) {
+        if(testResult.getStatus() == ITestResult.FAILURE)
+        {
+            logger.logFail(testResult.throwable.message, driver.webDriver != null ? takeSnapShot() : null)
+            StringBuilder trace = new StringBuilder()
+            for(def tr : testResult.throwable.getStackTrace()){
+                trace.append(tr.toString() + "\n")
+            }
+            logger.logInfoXML(trace.toString())
+        }
         if (driver.webDriver != null) {
             driver.quit()
         }

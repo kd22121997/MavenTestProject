@@ -1,7 +1,7 @@
 package utils.pages.google.googlesearch
 
 import org.openqa.selenium.Keys
-import utils.ApplicationUnderTest
+import utils.generics.ApplicationUnderTest
 import utils.base.BasePage
 
 class GoogleSearchPage extends BasePage implements GoogleSearchConstants {

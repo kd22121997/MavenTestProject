@@ -1,7 +1,7 @@
 package utils.apiutils
 
 import com.jayway.jsonpath.JsonPath
-import utils.ApplicationUnderTest
+import utils.generics.ApplicationUnderTest
 
 class JsonContext {
 
