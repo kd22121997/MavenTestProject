@@ -2,13 +2,18 @@ package utils.generics;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Constants;
 import utils.generics.HtmlElement;
 import utils.reporter.ReportLogger;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -22,9 +27,29 @@ public class HtmlWebDriver {
         this.logger = logger;
     }
 
-    void initialiseDriver() {
-        System.setProperty("webdriver.chrome.driver", "D:\\SeleniumDrivers\\chromedriver.exe");
-        webDriver = new ChromeDriver();
+    void initialiseDriver() throws Exception {
+        var timeOuts = new HashMap<String,Long>();
+        timeOuts.put("implicit",(long)Constants.ELEMENT_TIMEOUT*1000);
+        timeOuts.put("pageLoad",(long)Constants.PAGELOAD_TIMEOUT*1000);
+        timeOuts.put("script",(long)Constants.SCRIPT_TIMEOUT*1000);
+        if(Constants.BROWSER_NAME.equalsIgnoreCase("chrome")){
+            System.setProperty("webdriver.chrome.driver", Constants.SETTINGS.getProperty("app.driverPath") + "chromedriver.exe");
+            ChromeOptions options = new ChromeOptions();
+            options.setCapability("timeouts",timeOuts);
+            webDriver = new ChromeDriver(options);
+        }
+        else if(Constants.BROWSER_NAME.equalsIgnoreCase("edge")){
+            System.setProperty("webdriver.edge.driver", Constants.SETTINGS.getProperty("app.driverPath") + "chromedriver.exe");
+            webDriver = new EdgeDriver();
+        }
+        else if(Constants.BROWSER_NAME.equalsIgnoreCase("firefox")){
+            System.setProperty("webdriver.gecko.driver", Constants.SETTINGS.getProperty("app.driverPath") + "chromedriver.exe");
+            webDriver = new FirefoxDriver();
+        }
+        else {
+            throw new Exception("The mentioned browser is not supported in this Framework: " + Constants.BROWSER_NAME);
+        }
+        maximizedWindow();
     }
 
     public void maximizedWindow() {

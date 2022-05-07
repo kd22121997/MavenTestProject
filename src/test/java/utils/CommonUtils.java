@@ -26,14 +26,23 @@ public class CommonUtils {
         return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(json);
     }
 
-    public static Properties readProperties(String path) throws IOException {
-        FileReader reader = new FileReader(path);
+    public static Properties readProperties(String path) {
+        FileReader reader = null;
+        try {
+            reader = new FileReader(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         Properties p = new Properties();
-        p.load(reader);
+        try {
+            p.load(reader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return p;
     }
 
-    public static Properties getSettings() throws IOException {
+    public static Properties getSettings() {
         return readProperties(Constants.SETTINGS_PROPERTIES_PATH);
     }
 }

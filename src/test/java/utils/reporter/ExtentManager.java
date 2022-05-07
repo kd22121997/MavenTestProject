@@ -22,7 +22,7 @@ public class ExtentManager implements Constants {
 
         extent = new ExtentReports();
         extent.setSystemInfo("Organization","Krushna Lmt");
-        extent.setSystemInfo("Browser","Chrome");
+        extent.setSystemInfo("Browser",BROWSER_NAME);
         extent.attachReporter(sparkReporter);
         return  extent;
     }
