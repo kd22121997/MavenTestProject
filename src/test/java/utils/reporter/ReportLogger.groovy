@@ -50,18 +50,6 @@ class ReportLogger {
         logToExtentReport(Status.FAIL, s, screenshot)
     }
 
-    void logError(String s, String screenshot = null)
-    {
-        log.error(s)
-        def xmlerror  = MarkupHelper.createCodeBlock(s, CodeLanguage.XML)
-        extentTest.fail(xmlerror)
-        if(screenshot!=null)
-        {
-            def m = MediaEntityBuilder.createScreenCaptureFromBase64String(toBase64(screenshot)).build()
-            extentTest.log(Status.FAIL, m)
-        }
-    }
-
     private void logToExtentReport(Status status, String s, String screenshot = null) {
         if(screenshot!= null)
         {
@@ -78,6 +66,14 @@ class ReportLogger {
     {
         byte[] fileContent = FileUtils.readFileToByteArray(new File(filepath))
        return Base64.getEncoder().encodeToString(fileContent)
+    }
+
+    void logFailJson(String json){
+        extentTest.log(Status.FAIL,MarkupHelper.createCodeBlock(json, CodeLanguage.JSON))
+    }
+
+    void logFailXML(String xml){
+        extentTest.log(Status.FAIL,MarkupHelper.createCodeBlock(xml, CodeLanguage.XML))
     }
 
     void logInfoJson(String json){

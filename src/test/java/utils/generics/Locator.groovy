@@ -16,9 +16,9 @@ class Locator {
             if (type == "xpath")
                 xpath = "($value)[1]"
             else if (type == "linkText") {
-                xpath = "(//a[text()=\"$value\"])[1]"
+                xpath = "(//a[text()=\"$value\"])"
             } else
-                xpath = "(//*[@$type=\"$value\"])[1]"
+                xpath = "(//*[@$type=\"$value\"])"
         }
         return xpath
     }

@@ -11,7 +11,8 @@ class JsonTest extends UITestBase{
 
     @Test
     void jsonActions() throws IOException {
-        var jsonContext = new JsonContext(aut,new File(Constants.JSONFOLDERPATH + "/BasicJsonfile.jsonp"))
+        var jsonContext = new JsonContext(aut,new File(Constants.JSONFOLDERPATH + "/BasicJsonfile.json"))
+        def d= jsonContext.deSerialize()
 
         //Set value of a particular node of a Json File using Json path
         jsonContext.set("\$.Married", true)
@@ -20,7 +21,7 @@ class JsonTest extends UITestBase{
         jsonContext.add("\$.JobAcrossCareer", ["NameOfCompany": "Oracle", "Location": "Hyderabad"])
         jsonContext.add("\$.JobAcrossCareer", ["NameOfCompany": "Microsoft", "Location": "Bangalore"])
 
-        System.out.println("JSON After adding new values to JobsAcrossCareer: \n" + CommonUtils.prettyPrintJson(jsonContext.json()))
+        System.out.println("JSON After adding new values to JobsAcrossCareer: \n" + jsonContext.toJsonString())
         aut.logger.logInfoJson(CommonUtils.prettyPrintJson(jsonContext.json()))
 
         //Read value of a particular node using Json path
@@ -29,7 +30,7 @@ class JsonTest extends UITestBase{
 
         //Delete value of the List
         jsonContext.delete("\$.JobAcrossCareer[0]")
-        System.out.println("JSON After deleting first value of the array: \n" + CommonUtils.prettyPrintJson(jsonContext.json()))
+        aut.logger.logInfo("JSON After deleting first value of the array: \n" + jsonContext.toJsonString(true))
 
         //Complex Scenarios #1: Get the company Names located in Hyderabad
         var FirmNames = jsonContext.read("\$.JobAcrossCareer[?(@.Location=='Hyderabad')].NameOfCompany")

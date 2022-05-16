@@ -4,7 +4,7 @@ import com.aventstack.extentreports.ExtentReports
 import utils.generics.ApplicationUnderTest
 
 class BasePage {
-    public ApplicationUnderTest aut
-    public static ExtentReports extentReports
+    protected ApplicationUnderTest aut
+    protected static ExtentReports extentReports
     WebAssert webAssert
 }

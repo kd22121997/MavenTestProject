@@ -87,12 +87,12 @@ class ApplicationUnderTest implements Constants {
     void closeExecution(ITestResult testResult) {
         if(testResult.getStatus() == ITestResult.FAILURE)
         {
-            logger.logFail(testResult.throwable.message, driver.webDriver != null ? takeSnapShot() : null)
+            logger.logFail(testResult.getThrowable().toString(), driver.webDriver != null ? takeSnapShot() : null)
             StringBuilder trace = new StringBuilder()
             for(def tr : testResult.throwable.getStackTrace()){
                 trace.append(tr.toString() + "\n")
             }
-            logger.logInfoXML(trace.toString())
+            logger.logFailXML(trace.toString())
         }
         if (driver.webDriver != null) {
             driver.quit()

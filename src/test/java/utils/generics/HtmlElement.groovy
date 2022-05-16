@@ -55,7 +55,7 @@ class HtmlElement {
         def _elements = element.findElements(by.getBy())
         logger.logInfo("Locating elements '$by' within parent '$locator'")
         for(def ele : _elements){
-            elements.add(new HtmlElement(ele,by, logger))
+            elements.add(new HtmlElement(ele,by, logger, by.getXPath() + "[]"))
         }
         return elements
     }

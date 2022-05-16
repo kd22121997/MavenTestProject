@@ -8,7 +8,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Constants;
-import utils.generics.HtmlElement;
 import utils.reporter.ReportLogger;
 
 import java.time.Duration;

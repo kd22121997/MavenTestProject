@@ -15,9 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ExcelUtils {
-    Logger log = LoggerFactory.getLogger(this.getClass().getName());
     public List<HashMap<String, String>> readExcel(String path, String sheetName) throws IOException {
-        var fis = new FileInputStream(new File(path));
+        var fis = new FileInputStream(path);
         XSSFWorkbook wb = new XSSFWorkbook(fis);
         XSSFSheet sheet = wb.getSheet(sheetName);
         List<HashMap<String, String>> data = new ArrayList<>();
