@@ -15,4 +15,5 @@ public interface Constants {
     int SCRIPT_TIMEOUT = Integer.parseInt(SETTINGS.getProperty("ui.timeout.script"));
     String JSONFOLDERPATH = CommonUtils.getProjectPath() + SETTINGS.getProperty("app.jsonFolderPath");
     String TESTDATAPATH = CommonUtils.getProjectPath() + SETTINGS.getProperty("app.testDataFolderPath");
+
 }

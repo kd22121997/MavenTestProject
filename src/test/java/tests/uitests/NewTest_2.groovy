@@ -2,11 +2,13 @@ package tests.uitests
 
 
 import org.openqa.selenium.By
+import org.testng.annotations.BeforeTest
 import org.testng.annotations.Test
 import utils.base.UITestBase
 import utils.generics.Locator
 
 class NewTest_2 extends UITestBase{
+
 
     @Test
     void "Sauce Demo Test"()

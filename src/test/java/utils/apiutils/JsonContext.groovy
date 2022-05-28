@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.gson.Gson
 import com.jayway.jsonpath.DocumentContext
 import com.jayway.jsonpath.JsonPath
-import org.apache.poi.ss.formula.functions.T
 import utils.generics.ApplicationUnderTest
 
 import java.lang.reflect.Type

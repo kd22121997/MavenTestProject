@@ -21,7 +21,7 @@ public class ExtentManager implements Constants {
         sparkReporter.config().setTheme(Theme.STANDARD);
 
         extent = new ExtentReports();
-        extent.setSystemInfo("Organization","Krushna Lmt");
+        extent.setSystemInfo("Organization",SETTINGS.getProperty("app.report.extent.organisationName"));
         extent.setSystemInfo("Browser",BROWSER_NAME);
         extent.attachReporter(sparkReporter);
         return  extent;
