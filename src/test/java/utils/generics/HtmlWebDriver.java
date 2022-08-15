@@ -98,7 +98,7 @@ public class HtmlWebDriver {
         var _elements = webDriver.findElements(by.getBy());
         int i = 1;
         for (var ele : _elements) {
-            elements.add(new HtmlElement(ele, by, logger, by.getXPath()));
+            elements.add(new HtmlElement(ele, new Locator(by.getBy(), "(" + by.getXpath() + ")[" + i + ")"), logger));
             i++;
         }
         return elements;

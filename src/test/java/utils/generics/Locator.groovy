@@ -3,53 +3,38 @@ package utils.generics
 import org.openqa.selenium.By
 
 class Locator {
-
-    String type
-    String value
-    private String xpath
-    private By by
+    String xpath
+    By by
 
     private Locator(){ }
 
-    String getXPath() {
-        if (xpath == null) {
-            if (type == "xpath")
-                xpath = "($value)[1]"
-            else if (type == "linkText") {
-                xpath = "(//a[text()=\"$value\"])"
-            } else
-                xpath = "(//*[@$type=\"$value\"])"
-        }
-        return xpath
-    }
-
-    protected void setXpath(String xpath = null)
-    {
+    Locator(By by, String xpath){
+        this.by = by
         this.xpath = xpath
     }
 
     static Locator id(String id) {
-        return new Locator(type: "id", value: id, by: By.id(id))
+        return new Locator(xpath: "//*[@id=\"$id\"]", by: By.id(id))
     }
 
     static Locator name(String name) {
-        return new Locator(type: "name", value: name, by: By.name(name))
+        return new Locator(xpath: "//*[@name=\"name\"]", by: By.name(name))
     }
 
     static Locator xpath(String xpath) {
-        return new Locator(type: "xpath", value: xpath, by: By.xpath(xpath))
+        return new Locator(xpath: xpath, by: By.xpath(xpath))
     }
 
     static Locator cssSelector(String cssSelector) {
-        return new Locator(type: "css", value: cssSelector, by: By.id(cssSelector))
+        return new Locator(xpath: "//*[@css=\"$cssSelector\"]", by: By.cssSelector(cssSelector))
     }
 
     static Locator linkText(String linkText) {
-        return new Locator(type: "linkText", value: linkText, by: By.linkText(linkText))
+        return new Locator(xpath: "//*[text()=\"$linkText\"]", by: By.linkText(linkText))
     }
 
     static Locator className(String className) {
-        return new Locator(type: "className", value: className, by: By.className(className))
+        return new Locator(xpath: "//*[@class=\"$className\"]", by: By.className(className))
     }
 
     By getBy(){
@@ -57,6 +42,6 @@ class Locator {
     }
 
     String toString(){
-        return getXPath()
+        return xpath;
     }
 }

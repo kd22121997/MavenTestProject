@@ -21,11 +21,10 @@ class HtmlElement {
         js = (JavascriptExecutor)driver
     }
 
-     HtmlElement(WebElement element, Locator by, ReportLogger  logger, String xpath = null){
+     HtmlElement(WebElement element, Locator by, ReportLogger  logger){
         this.element = element
-        locator = by
+        this.locator = by
          this.logger = logger
-         locator.setXpath(xpath)
     }
 
 
@@ -55,7 +54,7 @@ class HtmlElement {
         def _elements = element.findElements(by.getBy())
         logger.logInfo("Locating elements '$by' within parent '$locator'")
         for(def ele : _elements){
-            elements.add(new HtmlElement(ele,by, logger, by.getXPath() + "[]"))
+            elements.add(new HtmlElement(ele))
         }
         return elements
     }
